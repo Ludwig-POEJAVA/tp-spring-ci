@@ -66,6 +66,5 @@ public class UserManagerServiceTests
 		this.userManagerService.delUser(createdUserId);
 		User nullUser = this.userRepository.findOne(createdUserId);
 		assertThat(nullUser).isNull();
-
 	}
 }

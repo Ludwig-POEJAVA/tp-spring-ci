@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import poe.spring.TPSpringSprong.service.UserManagerService;
@@ -46,6 +47,15 @@ public class UserRestController
 	{
 		this.userManagerService.delUser(id);
 		return;
+	}
+
+	@PatchMapping("/{id}/{login}/{password}/{newpassword}")
+	public User updateUser(@PathVariable(value = "id") Long id, @PathVariable(value = "login") String login, @PathVariable(value = "password") String pwd, @PathVariable(value = "newpassword") String newpassword)
+	{
+		this.userManagerService.readUser(id);
+
+		return this.userManagerService.updateUser(id, login, pwd);
+
 	}
 
 }

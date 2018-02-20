@@ -41,8 +41,18 @@ public class UserManagerService
 		return this.userRepository.findOne(id);
 	}
 
-	public User updateUser(Long id)
+	public User updateUser(Long id, String login, String pwd)
 	{
-		return null;
+		User user = this.userRepository.findOne(id);
+		user.setLogin(login);
+		user.setPassword(pwd);
+		this.userRepository.save(user);
+		return user;
+	}
+
+	public boolean isLoginUnique(String login)
+	{
+		//this.userRepository.
+		return false;
 	}
 }
