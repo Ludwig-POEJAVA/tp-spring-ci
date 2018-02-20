@@ -16,7 +16,13 @@ public class UserManagerService
 
 	public User signup(String login, String password)
 	{
-		User user = new User();
+		User user = null;
+
+		//vérification de l'unicité du login
+		if (this.userRepository.findByLogin(login) != null)
+			return null;
+
+		user = new User();
 		user.setLogin(login);
 		user.setPassword(password);
 
@@ -48,11 +54,5 @@ public class UserManagerService
 		user.setPassword(pwd);
 		this.userRepository.save(user);
 		return user;
-	}
-
-	public boolean isLoginUnique(String login)
-	{
-		//this.userRepository.
-		return false;
 	}
 }
