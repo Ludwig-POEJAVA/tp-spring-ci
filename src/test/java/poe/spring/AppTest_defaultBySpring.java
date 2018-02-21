@@ -1,4 +1,4 @@
-package poe.spring.TPSpringSprong;
+package poe.spring;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

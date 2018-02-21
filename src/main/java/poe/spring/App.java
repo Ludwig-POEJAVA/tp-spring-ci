@@ -1,4 +1,4 @@
-package poe.spring.TPSpringSprong;
+package poe.spring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

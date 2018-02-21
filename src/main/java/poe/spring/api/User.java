@@ -1,4 +1,4 @@
-package poe.spring.TPSpringSprong.api;
+package poe.spring.api;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

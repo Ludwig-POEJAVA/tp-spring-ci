@@ -1,11 +1,11 @@
-package poe.spring.TPSpringSprong.repository;
+package poe.spring.repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import poe.spring.TPSpringSprong.api.User;
+import poe.spring.api.User;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Long>

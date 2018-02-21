@@ -1,13 +1,14 @@
-package poe.spring.TPSpringSprong.service;
+package poe.spring.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import poe.spring.TPSpringSprong.repository.UserRepository;
-import poe.spring.TPSpringSprong.api.LoginCreationDelegate;
-import poe.spring.TPSpringSprong.api.User;
+import poe.spring.annotation.Chrono;
+import poe.spring.api.User;
+import poe.spring.delegate.LoginCreationDelegateService;
+import poe.spring.repository.UserRepository;
 
 @Service
 public class UserManagerService
@@ -15,22 +16,31 @@ public class UserManagerService
 	@Autowired
 	private UserRepository userRepository;
 
-	@Autowired
-	private LoginCreationDelegate lgd;
-
+	@Chrono
 	public User signup(String login, String password)
 	{
 		User user = null;
 
 		//vérification de l'unicité du login
 		if (this.userRepository.findByLogin(login) != null)
+		{
+			System.out.println("" + login + " existe deja");
 			return null;
+		}
 
-		if ( !this.lgd.checkLoginLength(login))
+		//vérification de la longueur du login
+		if ( !LoginCreationDelegateService.checkLogInLengthIsValid(login))
+		{
+			System.out.println("" + login + " trop court ou trop long");
 			return null;
+		}
 
-		if ( !this.lgd.checkLoginWords(login))
+		//vérification de la validité sémantique du login
+		if (LoginCreationDelegateService.checkLoginContainsForbiddenWords(login))
+		{
+			System.out.println("" + login + " interdit");
 			return null;
+		}
 
 		user = new User();
 		user.setLogin(login);
@@ -46,7 +56,7 @@ public class UserManagerService
 		return (List<User>) this.userRepository.findAll();
 	}
 
-	public void delUser(Long id)
+	public void deleteUSer(Long id)
 	{
 		this.userRepository.delete(id);
 		return;

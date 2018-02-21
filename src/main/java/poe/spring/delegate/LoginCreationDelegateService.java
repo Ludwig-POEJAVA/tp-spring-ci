@@ -1,12 +1,12 @@
-package poe.spring.TPSpringSprong.api;
+package poe.spring.delegate;
 
-public class LoginCreationDelegate
+public class LoginCreationDelegateService
 {
-	private final int	minLength	= 4;
-	private final int	maxLength	= 10;
+	protected final static int	MIN_LENGTH	= 4;
+	protected final static int	MAX_LENGTH	= 10;
 
 	//courtesy of https://github.com/ubernostrum/django-registration/blob/1d7d0f01a24b916977016c1d66823a5e4a33f2a0/registration/validators.py#L25
-	private String[] forbiddenWords = {"ToTo", "autoconfig", "autodiscover", "broadcasthost", "isatap",
+	protected final static String[] FORBIDDEN_WORDS = {"ToTo", "autoconfig", "autodiscover", "broadcasthost", "isatap",
 			"localdomain", "localhost", "wpad", "ftp", "imap", "mail", "news", "pop", "pop3", "smtp", "usenet", "uucp",
 			"webmail", "www", "admin", "administrator", "hostmaster", "info", "is", "it", "mis", "postmaster", "root",
 			"ssladmin", "ssladministrator", "sslwebmaster", "sysadmin", "webmaster", "abuse", "marketing", "noc",
@@ -18,18 +18,22 @@ public class LoginCreationDelegate
 			"profile", "register", "secure", "settings", "signin", "signup", "ssl", "status", "subscribe", "terms",
 			"tos", "user", "users", "weblog", "work" };
 
-	public boolean checkLoginLength(String login)
+	public static boolean checkLogInLengthIsValid(String login)
 	{
-		return (login.length() >= this.minLength) && (login.length() <= this.maxLength);
+		return (login.length() >= LoginCreationDelegateService.MIN_LENGTH) && (login
+				.length() <= LoginCreationDelegateService.MAX_LENGTH);
 	}
 
-	public boolean checkLoginWords(String login)
+	public static boolean checkLoginContainsForbiddenWords(String login)
 	{
-		for (String forbiddenWord: this.forbiddenWords)
+		boolean result = false;;
+		for (String forbiddenWord: LoginCreationDelegateService.FORBIDDEN_WORDS)
 		{
 			if (login.toLowerCase().equals(forbiddenWord.toLowerCase()))
-				return true;
+			{
+				result = true;
+			}
 		}
-		return false;
+		return result;
 	}
 }
