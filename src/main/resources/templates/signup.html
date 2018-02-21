@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Index du projet Spring 4 / ThymeLeaf / POE Java</title>
+	</head>
+	<body>
+		<h1>PAGE D'INSCRIPTION</h1>
+		<p>
+			<span th:text="${message}"/><br />
+		</p>
+		
+		<form action="#" th:action="@{/signup}" th:object="${user}"
+              method="post">
+              <input type="text" id="username" name="username" />
+              <input type="submit" value="senregistrer" />
+		</form>
+
+		<p>
+			<span th:text="${time}"/>
+		</p>
+	</body>
+</html>

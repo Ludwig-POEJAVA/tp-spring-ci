@@ -27,7 +27,6 @@ public class UserRestController
 	public Long save(@RequestBody User user)
 	{
 		User savedUser = this.userManagerService.signup(user.getLogin(), user.getPassword());
-		System.out.println("user id : " + savedUser);
 		return savedUser.getId();
 	}
 

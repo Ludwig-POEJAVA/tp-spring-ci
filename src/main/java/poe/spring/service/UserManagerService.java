@@ -5,18 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import poe.spring.annotation.Chrono;
+import poe.spring.annotation.ChronoAllMethods;
 import poe.spring.api.User;
 import poe.spring.delegate.LoginCreationDelegateService;
 import poe.spring.repository.UserRepository;
 
 @Service
+@ChronoAllMethods
 public class UserManagerService
 {
 	@Autowired
 	private UserRepository userRepository;
 
-	@Chrono
 	public User signup(String login, String password)
 	{
 		User user = null;
