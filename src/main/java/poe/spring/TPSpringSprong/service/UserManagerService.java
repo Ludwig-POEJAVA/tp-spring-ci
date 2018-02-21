@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import poe.spring.TPSpringSprong.repository.UserRepository;
+import poe.spring.TPSpringSprong.api.LoginCreationDelegate;
 import poe.spring.TPSpringSprong.api.User;
 
 @Service
@@ -14,12 +15,21 @@ public class UserManagerService
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private LoginCreationDelegate lgd;
+
 	public User signup(String login, String password)
 	{
 		User user = null;
 
 		//vérification de l'unicité du login
 		if (this.userRepository.findByLogin(login) != null)
+			return null;
+
+		if ( !this.lgd.checkLoginLength(login))
+			return null;
+
+		if ( !this.lgd.checkLoginWords(login))
 			return null;
 
 		user = new User();
