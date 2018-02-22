@@ -58,7 +58,10 @@ public class UserManagerService
 
 	public void deleteUSer(Long id)
 	{
-		this.userRepository.delete(id);
+		if (this.readUser(id) != null)
+		{
+			this.userRepository.delete(id);
+		}
 		return;
 	}
 

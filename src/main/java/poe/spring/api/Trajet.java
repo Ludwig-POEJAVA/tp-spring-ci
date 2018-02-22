@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Trajet
@@ -18,11 +19,14 @@ public class Trajet
 
 	private String villeArrivee;
 
-	private double prix;
+	private Double prix;
 
-	private int places;
+	private Integer places;
 
 	private Date dateDepart;
+
+	@ManyToOne
+	private User conducteur;
 
 	public long getId()
 	{
@@ -82,5 +86,15 @@ public class Trajet
 	public void setDateDepart(Date dateDepart)
 	{
 		this.dateDepart = dateDepart;
+	}
+
+	public User getConducteur()
+	{
+		return this.conducteur;
+	}
+
+	public void setConducteur(User conducteur)
+	{
+		this.conducteur = conducteur;
 	}
 }

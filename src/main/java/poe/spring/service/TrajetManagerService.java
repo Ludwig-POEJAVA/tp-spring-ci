@@ -6,10 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import poe.spring.annotation.ChronoAllMethods;
 import poe.spring.api.Trajet;
 import poe.spring.api.User;
-import poe.spring.delegate.LoginCreationDelegateService;
 import poe.spring.repository.TrajetRepository;
 import poe.spring.repository.UserRepository;
 
@@ -19,18 +17,32 @@ public class TrajetManagerService
 	@Autowired
 	private TrajetRepository trajetRepository;
 
-	public Trajet save(String villeDepart, String villeArrivee, double prix, int places, Date dateDepart)
+	@Autowired
+	private UserRepository userRepository;
+
+	public Trajet proposerUnTrajet(String villeDepart, String villeArrivee, double prix, int places, Date dateDepart, Long conducteurId) throws Exception
 	{
 		Trajet trajet = null;
+		User conducteur = this.userRepository.findOne(conducteurId);
+		if (conducteur != null)
+		{
+			trajet = new Trajet();
 
-		trajet = new Trajet();
-		trajet.setVilleDepart(villeDepart);
-		trajet.setVilleArrivee(villeArrivee);
-		trajet.setPrix(prix);
-		trajet.setPlaces(places);
-		trajet.setDateDepart(dateDepart);
+			trajet.setConducteur(conducteur);
 
-		this.trajetRepository.save(trajet);//persist
+			trajet.setVilleDepart(villeDepart);
+			trajet.setVilleArrivee(villeArrivee);
+			trajet.setPrix(prix);
+			trajet.setPlaces(places);
+			trajet.setDateDepart(dateDepart);
+
+			conducteur.getTrajets().add(trajet);
+
+			this.trajetRepository.save(trajet);//persist
+			this.userRepository.save(conducteur);
+		}
+		else
+			throw new Exception("conducteur invalide");
 
 		return trajet;
 	}
@@ -40,10 +52,14 @@ public class TrajetManagerService
 		return (List<Trajet>) this.trajetRepository.findAll();
 	}
 
-	public void delete(Long id)
+	public boolean delete(Long id)
 	{
-		this.trajetRepository.delete(id);
-		return;
+		if (this.read(id) != null)
+		{
+			this.trajetRepository.delete(id);
+			return true;
+		}
+		return false;
 	}
 
 	public Trajet read(Long id)
