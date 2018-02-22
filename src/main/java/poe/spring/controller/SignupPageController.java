@@ -47,8 +47,15 @@ public class SignupPageController
 			return nextPage;
 
 		attr.addAttribute("usernameCreated", username);
-		nextPage = "redirect:/signup/success";
-		this.userManagerService.signup(username, password);
+		try
+		{
+			this.userManagerService.signup(username, password);
+			nextPage = "redirect:/signup/success";
+		}
+		catch (Exception e)
+		{
+			attr.addAttribute("erreur", "j'ai glissé chef");
+		}
 		return nextPage;
 	}
 

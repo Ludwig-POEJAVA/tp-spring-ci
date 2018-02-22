@@ -8,7 +8,6 @@ import javax.persistence.Id;
 @Entity
 public class User
 {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -16,17 +15,6 @@ public class User
 	private String login;
 
 	private String password;
-
-	public User()
-	{
-
-	}
-
-	public User(String login, String password)
-	{
-		this.login = login;
-		this.password = password;
-	}
 
 	public Long getId()
 	{
