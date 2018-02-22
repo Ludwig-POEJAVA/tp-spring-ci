@@ -39,7 +39,7 @@ public class SignupPageController
 	@PostMapping
 	public String saveUser(@Valid LoginForm form, BindingResult bindingResult, RedirectAttributes attr)
 	{
-		String nextPage = "redirect:/signup";
+		String nextPage = "forward:/signup";
 		String username = form.getUsername();
 		String password = form.getPassword();
 
@@ -52,6 +52,7 @@ public class SignupPageController
 			this.userManagerService.signup(username, password);
 			nextPage = "redirect:/signup/success";
 		}
+		//TODO : plein d'exceptions et pleins de messages d'erreurs
 		catch (Exception e)
 		{
 			attr.addAttribute("erreur", "j'ai glissé chef");
