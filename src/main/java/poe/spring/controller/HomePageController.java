@@ -14,6 +14,7 @@ public class HomePageController
 	@GetMapping
 	public String index(Model model)
 	{
+		model.addAttribute("title", "Index of /");
 		model.addAttribute("message", "Welcome $user, this is the best site of India.");
 		model.addAttribute("time", new Date());
 		return "index";
