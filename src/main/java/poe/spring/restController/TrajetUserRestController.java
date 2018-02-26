@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import poe.spring.api.Trajet;
-import poe.spring.api.User;
 import poe.spring.dataTransferObject.ProposerUnTrajetDTO;
 import poe.spring.service.TrajetManagerService;
 
