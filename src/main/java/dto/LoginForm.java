@@ -1,4 +1,4 @@
-package poe.spring.dataTransferObject;
+package dto;
 
 import javax.validation.constraints.Size;
 

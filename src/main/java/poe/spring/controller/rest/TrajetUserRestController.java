@@ -1,4 +1,4 @@
-package poe.spring.restController;
+package poe.spring.controller.rest;
 
 import java.util.Date;
 import java.util.List;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import dto.ProposerUnTrajetDTO;
 import poe.spring.api.Trajet;
-import poe.spring.dataTransferObject.ProposerUnTrajetDTO;
 import poe.spring.service.TrajetManagerService;
 
 @RestController

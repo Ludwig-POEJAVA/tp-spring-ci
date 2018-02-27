@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import poe.spring.api.Trajet;
 import poe.spring.api.User;
+import poe.spring.exception.DriverBusinessException;
 import poe.spring.repository.TrajetRepository;
 import poe.spring.repository.UserRepository;
 
@@ -20,7 +21,7 @@ public class TrajetManagerService
 	@Autowired
 	private UserRepository userRepository;
 
-	public Trajet proposerUnTrajet(String villeDepart, String villeArrivee, double prix, int places, Date dateDepart, Long conducteurId) throws Exception
+	public Trajet proposerUnTrajet(String villeDepart, String villeArrivee, double prix, int places, Date dateDepart, Long conducteurId) throws DriverBusinessException
 	{
 		Trajet trajet = null;
 		User conducteur = this.userRepository.findOne(conducteurId);
@@ -42,7 +43,7 @@ public class TrajetManagerService
 			this.userRepository.save(conducteur);
 		}
 		else
-			throw new Exception("conducteur invalide");
+			throw new DriverBusinessException("conducteur invalide");
 
 		return trajet;
 	}

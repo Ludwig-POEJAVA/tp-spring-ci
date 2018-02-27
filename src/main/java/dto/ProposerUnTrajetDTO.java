@@ -1,4 +1,4 @@
-package poe.spring.dataTransferObject;
+package dto;
 
 import java.util.Date;
 

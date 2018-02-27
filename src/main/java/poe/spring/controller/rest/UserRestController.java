@@ -1,4 +1,4 @@
-package poe.spring.restController;
+package poe.spring.controller.rest;
 
 import java.util.List;
 

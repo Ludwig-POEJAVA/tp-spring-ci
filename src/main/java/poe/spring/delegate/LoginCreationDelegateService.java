@@ -2,11 +2,15 @@ package poe.spring.delegate;
 
 public class LoginCreationDelegateService
 {
-	protected final static int	MIN_LENGTH	= 4;
-	protected final static int	MAX_LENGTH	= 10;
+	private LoginCreationDelegateService()
+	{
+	}
+
+	protected static final int	MIN_LENGTH	= 4;
+	protected static final int	MAX_LENGTH	= 10;
 
 	//courtesy of https://github.com/ubernostrum/django-registration/blob/1d7d0f01a24b916977016c1d66823a5e4a33f2a0/registration/validators.py#L25
-	protected final static String[] FORBIDDEN_WORDS = {"ToTo", "autoconfig", "autodiscover", "broadcasthost", "isatap",
+	protected static final String[] FORBIDDEN_WORDS = {"ToTo", "autoconfig", "autodiscover", "broadcasthost", "isatap",
 			"localdomain", "localhost", "wpad", "ftp", "imap", "mail", "news", "pop", "pop3", "smtp", "usenet", "uucp",
 			"webmail", "www", "admin", "administrator", "hostmaster", "info", "is", "it", "mis", "postmaster", "root",
 			"ssladmin", "ssladministrator", "sslwebmaster", "sysadmin", "webmaster", "abuse", "marketing", "noc",
@@ -26,10 +30,10 @@ public class LoginCreationDelegateService
 
 	public static boolean checkLoginContainsForbiddenWords(String login)
 	{
-		boolean result = false;;
+		boolean result = false;
 		for (String forbiddenWord: LoginCreationDelegateService.FORBIDDEN_WORDS)
 		{
-			if (login.toLowerCase().equals(forbiddenWord.toLowerCase()))
+			if (login.equalsIgnoreCase(forbiddenWord))
 			{
 				result = true;
 			}

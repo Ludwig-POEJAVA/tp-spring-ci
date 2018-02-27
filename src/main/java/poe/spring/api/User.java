@@ -21,7 +21,7 @@ public class User
 	private String password;
 
 	@OneToMany(mappedBy = "conducteur")
-	private List<Trajet> trajets = new ArrayList<>();;
+	private List<Trajet> trajets = new ArrayList<>();
 
 	public Long getId()
 	{
