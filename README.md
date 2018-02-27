@@ -6,13 +6,5 @@ Integration continue du projet spring
 
 
 # Getting started
-dsfsdfsdfsdfsdfsdfs
-ddfsdfsd
-ss
-dsdfsdfd
-ss
-dsfsfdf
-dsldjskldjkhdjkhdjfhsdjkfhsjkhfsdf
 
-#I am a teapot
-
+# I am a teapot
