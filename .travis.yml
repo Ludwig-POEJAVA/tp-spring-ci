@@ -1,3 +1,4 @@
 language: java
 jdk:
   - oraclejdk8
+install: mvn clean compile mvn sonar:sonar   -Dsonar.organization=ludwig-poejava-github   -Dsonar.host.url=https://sonarcloud.io   -Dsonar.login=ba718c5de84e6bb190ed5ac7098bbe27fe2c9596
